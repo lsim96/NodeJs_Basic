@@ -64,7 +64,5 @@
     "name": "John Doe",
     "username": "johndoe",
     "email": "johndoe@example.com"
-  },
-  { "id": 12, "name": "Bob", "username": "bobbobsky", "email": "bob@email.com" }
+  }
 ]
- 

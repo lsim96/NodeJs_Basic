@@ -52,6 +52,7 @@ const addStudent = (newStudentData) => {
   return newStudent;
 };
 
+//4 Get student by id
 const getStudentById = (studentId) => {
   const students = getStudents();
   const foundStudent = students.find((student) => student.id === studentId);
@@ -59,6 +60,7 @@ const getStudentById = (studentId) => {
   return foundStudent;
 };
 
+//5. Delete student by Id
 const deleteStudent = (studentId) => {
   const students = getStudents();
   const updatedStudents = students.filter(
@@ -67,6 +69,35 @@ const deleteStudent = (studentId) => {
   if (students.length === updatedStudents.length) {
     throw new Error("Student to delete not found");
   }
+  saveStudentsData(updatedStudents);
 };
 
-export { getStudents, getStudentById, addStudent, deleteStudent };
+//6. Update student by Id
+const updateStudent = (studentId, studentUpdateData) => {
+  const students = getStudents();
+  const foundStudentIndex = students.findIndex(
+    (student) => student.id === studentId
+  );
+  console.log(foundStudentIndex);
+
+  //if student is not found
+  if (foundStudentIndex < 0) throw new Error("Student not found");
+  //if (!foundStudent) can be used
+
+  const updatedStudentData = {
+    ...students[foundStudentIndex],
+    ...studentUpdateData,
+  };
+
+  students[foundStudentIndex] = updatedStudentData;
+  saveStudentsData(students);
+  return updatedStudentData;
+};
+
+export {
+  getStudents,
+  getStudentById,
+  addStudent,
+  deleteStudent,
+  updateStudent,
+};
